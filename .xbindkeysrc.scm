@@ -54,5 +54,12 @@
   )
 )
 
+(define (bind_bar_to_shift_keypad_1_to_3)
+  (xbindkey '(release "c:34") "xte 'key bar'")
+  (xbindkey '(release shift "c:34") "xte 'keydown Shift_L' 'key bar' 'keyup Shift_L'")
+  (xbindkey '(release "c:135") "xte 'keydown ISO_Level3_Shift' 'key bar' 'keyup ISO_Level3_Shift'")
+)
+
 (first-binding-b9)
 (first-binding-b8)
+(bind_bar_to_shift_keypad_1_to_3)

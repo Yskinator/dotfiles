@@ -40,7 +40,7 @@
   (xbindkey-function '("b:9")
     (lambda ()
       (reset-first-binding)
-      (run-command "xte 'key F4'")
+      (run-command "xte 'key F5'")
       (run-command "killall xbindkeys; xbindkeys")
     )
   )

@@ -26,7 +26,7 @@ set path+=**
 set wildmenu
 
 " Tabs and indents consist of 4 spaces
-set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " Fold by indents
 set foldmethod=indent nofoldenable foldnestmax=1
@@ -34,11 +34,16 @@ set foldmethod=indent nofoldenable foldnestmax=1
 " Set line numbers and relative line numbers
 set nu rnu
 
+" Make searching case insensitive unless the search includes an upper case
+" character
+set ignorecase
+set smartcase
+
 " Set , as the leader key
 let mapleader = ","
 
 " Create a tags file
-command! MakeTags !ctags -R .
+command! MakeTags !ctags -R --exclude=.git --exclude=env --exclude=env38 .
 
 " File browsing configuration
 let g:netrw_banner=0            " disable banner
@@ -56,7 +61,7 @@ else
   "set backup		" keep a backup file (restore to previous version)
   "set undofile		" keep an undo file (undo changes after closing)
 endif
-set history=100		" keep 100 lines of command line history
+set history=1000	" keep 1000 lines of command line history
 "set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
@@ -76,6 +81,13 @@ inoremap <Up> <Nop>
 inoremap <Down> <Nop>
 inoremap <Left> <Nop>
 inoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+
+" Use <F3> to toggle indentation when pasting text
+set pastetoggle=<F3>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
@@ -116,8 +128,8 @@ if has("autocmd")
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
 
-  " Automatically update the tags file when writing a .py file
-  autocmd BufWritePost *.py :MakeTags
+  " Automatically update the tags file when writing a .py or a .cs file
+  autocmd BufWritePost *.py *.cs :MakeTags
 
   " Shortcut to vimrc, and automatically source vimrc when updated.
   map <leader>vimrc :tabe ~/.vimrc<cr>

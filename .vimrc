@@ -89,6 +89,9 @@ nnoremap <Right> <Nop>
 " Use <F3> to toggle indentation when pasting text
 set pastetoggle=<F3>
 
+" Synch clipboard and default register for copy-pasting between terminals
+set clipboard^=unnamed
+
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=
